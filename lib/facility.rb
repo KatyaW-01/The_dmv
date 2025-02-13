@@ -1,5 +1,5 @@
 require 'date'
-require 'pry'
+require './lib/vehicle'
 class Facility
   attr_reader :name, :address, :phone, :services, :registered_vehicles
 
@@ -17,20 +17,23 @@ class Facility
 
   def collected_fees
     fees = 0
+    @registered_vehicles.each do |vehicle|
+      if vehicle.antique?
+        fees += 25
+      elsif vehicle.elecrtic_vehicle?
+        fees += 200
+      else
+        fees += 100
+      return fees
+      end
+    end
+    
   end
 
   def register_vehicle(vehicle)
+    vehicle.registration_date = Date.today
     @registered_vehicles << vehicle
 
-  end
-  def registration_date
-    @registered_vehicles.each do |vehicle|
-      if @registered_vehicles.include?(vehicle)
-        @registration_date = Date.today
-      end
-    @registration_date
-    
-    end
   end
   
 end
