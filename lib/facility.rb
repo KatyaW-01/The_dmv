@@ -1,7 +1,14 @@
 require 'date'
 require './lib/vehicle'
+require 'pry'
 class Facility
-  attr_reader :name, :address, :phone, :services, :registered_vehicles, :plate_type
+  attr_reader :name, 
+              :address, 
+              :phone, 
+              :services, 
+              :registered_vehicles,
+              :collected_fees
+              
 
   def initialize(facility_data)
     @name = facility_data[:name]
@@ -9,26 +16,28 @@ class Facility
     @phone = facility_data[:phone]
     @services = []
     @registered_vehicles = []
-    @plate_type = plate_type 
+    @collected_fees = 0
+    @plate_type = nil
+    
   end
 
   def add_service(service)
     @services << service
   end
 
-  def collected_fees
-    fees = 0
-    #if statement to collect fees based on plate type 
-  end
-
-
   def register_vehicle(vehicle)
     vehicle.registration_date = Date.today
-    #set plate type here
+    if vehicle.antique?
+      vehicle.plate_type = :antique
+      @collected_fees += 25
+    elsif vehicle.electric_vehicle?
+      vehicle.plate_type = :ev
+      @collected_fees += 200
+    else
+      vehicle.plate_type = :regular
+      @collected_fees += 100
+    end
     @registered_vehicles << vehicle
-
-
-
   end
   
 end
