@@ -17,18 +17,9 @@ class Facility
 
   def collected_fees
     fees = 0
-    @registered_vehicles.each do |vehicle|
-      if vehicle.antique?
-        fees += 25
-      elsif vehicle.elecrtic_vehicle?
-        fees += 200
-      else
-        fees += 100
-      return fees
-      end
-    end
-    
+     
   end
+
 
   def register_vehicle(vehicle)
     vehicle.registration_date = Date.today
