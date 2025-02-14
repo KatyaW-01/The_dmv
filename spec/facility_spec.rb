@@ -32,7 +32,7 @@ RSpec.describe Facility do
     end
   end
 
-  describe '#vehicle registration' do
+  describe '#Vehicle Registration' do
     it 'can add services' do
       @facility_1.add_service('Vehicle Registration')
 
@@ -96,6 +96,14 @@ RSpec.describe Facility do
 
       expect(@facility_2.collected_fees).to eq(0)
       expect(@facility_2.registered_vehicles).to eq([])
+    end
+  end
+
+  describe "#Drivers License" do
+    it 'can administer written tests' do
+      expect(@registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+      expect(@registrant_1.permit?).to eq(true)
+      expect(@facility_1.administer_written_test(@registrant_1)).to eq(false)
     end
   end
 end
