@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'pry'
+
 
 RSpec.describe Vehicle do
   before(:each) do
