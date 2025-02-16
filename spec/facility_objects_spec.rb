@@ -32,6 +32,7 @@ RSpec.describe FacilityObjects do
         end
 
         it 'can create facilities at multiple locations' do
+            #Colorado Offices
             co_facilities = DmvDataService.new.co_dmv_office_locations
 
             facilities = @facility.create_facilities(co_facilities)
@@ -43,7 +44,8 @@ RSpec.describe FacilityObjects do
             expect(facilities[0].address).to eq('2855 Tremont Place Suite 118 Denver CO 80205')
             expect(facilities[0].phone).to eq("(720) 865-4600")
             expect(facilities[0].services).to eq([])
-
+        
+            #New York Offices
             new_york_facilities = DmvDataService.new.ny_dmv_office_locations
 
             facilities = @facility.create_facilities(new_york_facilities)
@@ -53,6 +55,18 @@ RSpec.describe FacilityObjects do
             #expect(facilities[0].address).to eq("2693 MAIN STREET LAKE PLACID NY 12946")
             expect(facilities[0].phone).to eq(nil)
             expect(facilities[0].services).to eq([])
+
+            #Missouri Offices
+            missouri_facilities = DmvDataService.new.mo_dmv_office_locations
+
+            facilities = @facility.create_facilities(missouri_facilities)
+
+            expect(facilities[0]).to be_an_instance_of(Facility)
+            expect(facilities[0].name).to eq("Clayton")
+            #expect(facilities[0].address).to eq("147 N Meramec Ave Clayton MO 63105")
+            expect(facilities[0].phone).to eq("(314) 499-7223")
+            expect(facilities[0].services).to eq([])
+
 
 
 
