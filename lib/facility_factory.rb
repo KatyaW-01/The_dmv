@@ -1,7 +1,8 @@
 require './lib/facility'
-class FacilityObjects
+class FacilityFactory
+    
     def initialize
-
+       
     end
 
     def create_facilities(facilities)
@@ -11,7 +12,17 @@ class FacilityObjects
                 address: [facility[:address_li],facility[:address__1],facility[:city],facility[:state],facility[:zip]].join(" ") || [facility[:street_address_line_1],facility[:city],facility[:state],facility[:zip_code]].join(" ") || [facility[:address1],facility[:city],facility[:state],facility[:zipcode]].join(" "), 
                 phone: facility[:phone] || facility[:public_phone_number]
                                     })
-            #binding.pry
+        
         end
     end
-end
+
+end   
+
+#Colorado address key
+#[facility[:address_li],facility[:address__1],facility[:city],facility[:state],facility[:zip]].join(" ")
+
+#New York address key
+#[facility[:street_address_line_1],facility[:city],facility[:state],facility[:zip_code]].join(" ")
+
+#Missouri address key
+# [facility[:address1],facility[:city],facility[:state],facility[:zipcode]].join(" ")
